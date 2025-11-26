@@ -23,7 +23,7 @@ export class ProductCardComponent {
   );
   toggleWishList(product: Product) {
     if (this.isInWishlist()) {
-      //this.store.removeFromWishlist(product);
+      this.store.removeFromWishlist(product);
     } else {
       this.store.addToWishlist(product);
     }
