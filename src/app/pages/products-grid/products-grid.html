@@ -31,16 +31,10 @@
     <div class="responsive-grid">
       @for (product of store.filteredProducts(); track product.id) {
       <app-product-card [product]="product">
-        <button
-          class="!absolute z-10 top-3 right-3 w-10 h-10 rounded-full !bg-white border-0 shadow-md flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 hover:shadow-lg"
-          (click)="toggleWishList(product())"
-          [class]="isInWishlist() ? '!text-red-500' : '!text-gray-400'"
-          matIconButton
-        >
-          <mat-icon class="text-red-500">{{
-            isInWishlist() ? "favorite" : "favorite_border"
-          }}</mat-icon>
-        </button>
+        <app-toggle-wishlist-button
+          class="!absolute z-10 top-3 right-3 w-10 h-10 rounded-full"
+          [product]="product"
+        ></app-toggle-wishlist-button>
       </app-product-card>
       }
     </div>

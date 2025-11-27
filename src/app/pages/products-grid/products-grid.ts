@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { Product } from '../../models/product';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ProductCardComponent } from '../../components/product-card/product-card';
 import {
   MatSidenavContainer,
   MatSidenavContent,
@@ -14,8 +14,8 @@ import {
 } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
-import { products } from '../../constant';
 import { EcommerceStore } from '../../ecommerce-store';
+import { ToggleWishlistButtonComponent } from '../../components/toggle-wishlist-button/toggle-wishlist-button';
 
 @Component({
   selector: 'app-products-grid',
@@ -29,8 +29,9 @@ import { EcommerceStore } from '../../ecommerce-store';
     MatListItemTitle,
     RouterLink,
     TitleCasePipe,
+    ToggleWishlistButtonComponent,
   ],
-  templateUrl: './products-grid.component.html',
+  templateUrl: './products-grid.html',
   styles: ``,
 })
 export default class ProductsGridComponent {

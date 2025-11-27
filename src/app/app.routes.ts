@@ -8,11 +8,10 @@ export const routes: Routes = [
   },
   {
     path: 'products/:category',
-    loadComponent: () =>
-      import('./pages/products-grid/products-grid.component'),
+    loadComponent: () => import('./pages/products-grid/products-grid'),
   },
   {
     path: 'wishlist',
-    loadComponent: () => import('./pages/my-wishlist/my-wishlist.component'),
+    loadComponent: () => import('./pages/my-wishlist/my-wishlist'),
   },
 ];
