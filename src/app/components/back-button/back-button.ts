@@ -22,7 +22,7 @@ import { RouterLink } from '@angular/router';
     }
   `,
 })
-export class BackButtonComponent {
+export class BackButton {
   label = input('');
   navigateTo = input<string>();
 }

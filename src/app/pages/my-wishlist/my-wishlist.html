@@ -23,9 +23,15 @@
   </div>
 
   <div class="mt-8 flex justify-center">
-    <button matButton="outlined" class="danger" (click)="store.clearWishlist()">
+    <button
+      matButton="outlined"
+      class="danger rounded-full border-1 cursor-pointer shadow-md px-6 py-3 font-medium hover:shadow-lg transition-all duration-200"
+      (click)="store.clearWishlist()"
+    >
       Clear Wishlist
     </button>
   </div>
-  } @else{ }
+  } @else {
+  <app-empty-wishlist />
+  }
 </div>
