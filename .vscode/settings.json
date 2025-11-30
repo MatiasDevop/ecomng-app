@@ -1,0 +1,23 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "typescript": "html",
+    "angular-html": "html"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "[class]"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    ["class:\\s*[\"'`]([^\"'`]*)[\"'`]", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["\\[class\\]=[\"'`]([^\"'`]*)[\"'`]"]
+  ],
+  "files.associations": {
+    "*.component.html": "html"
+  },
+  // Key for v4: Point to your global CSS file (usually src/styles.css or similar)
+  "tailwindCSS.experimental.configFile": "./src/styles.css"
+}
