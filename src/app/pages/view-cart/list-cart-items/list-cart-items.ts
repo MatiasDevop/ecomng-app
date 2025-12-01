@@ -20,6 +20,6 @@ import { ShowCartItem } from '../../show-cart-item/show-cart-item';
   `,
   styles: ``,
 })
-export class ListCartItemsComponent {
+export class ListCartItems {
   store = inject(EcommerceStore);
 }

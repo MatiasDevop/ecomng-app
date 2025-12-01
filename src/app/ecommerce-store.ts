@@ -87,5 +87,52 @@ export const EcommerceStore = signalStore(
           : 'Product added to cart!'
       );
     },
+
+    setItemQuantity(params: { productId: string; quantity: number }) {
+      const index = store
+        .cartItems()
+        .findIndex((c) => c.product.id === params.productId);
+      const updated = produce(store.cartItems(), (draft) => {
+        draft[index].quantity = params.quantity;
+      });
+      patchState(store, { cartItems: updated });
+    },
+
+    addAllWishlistToCart: () => {
+      const updatedCartItems = produce(store.cartItems(), (draft) => {
+        store.wishlistItems().forEach((product) => {
+          if (!draft.find((item) => item.product.id === product.id)) {
+            draft.push({ product: product, quantity: 1 });
+          }
+        });
+      });
+
+      patchState(store, { cartItems: updatedCartItems, wishlistItems: [] });
+      toaster.success('All wishlist items added to cart!');
+    },
+
+    moveToWishlist: (product: Product) => {
+      const updatedCartItems = store
+        .cartItems()
+        .filter((item) => item.product.id !== product.id);
+      const updatedWishlistItems = produce(store.wishlistItems(), (draft) => {
+        if (!draft.find((p) => p.id === product.id)) {
+          draft.push(product);
+        }
+      });
+
+      patchState(store, {
+        cartItems: updatedCartItems,
+        wishlistItems: updatedWishlistItems,
+      });
+      toaster.success('Product moved to wishlist!');
+    },
+
+    removeFromCart: (product: Product) => {
+      patchState(store, {
+        cartItems: store.cartItems().filter((c) => c.product.id !== product.id),
+      });
+      toaster.success('Product removed from cart.');
+    },
   }))
 );

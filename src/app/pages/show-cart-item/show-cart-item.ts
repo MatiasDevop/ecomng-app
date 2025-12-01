@@ -25,17 +25,26 @@ import { MatIcon } from '@angular/material/icon';
 
       <app-qty-selector
         [quantity]="item().quantity"
-        (qtyUpdated)="item().quantity = $event"
+        (qtyUpdated)="
+          store.setItemQuantity({
+            productId: item().product.id,
+            quantity: $event
+          })
+        "
       />
 
       <div class="flex flex-col items-end">
         <div class="text-right font-semibold text-lg">{{ total() }}</div>
 
         <div class="flex -mx-3 gap-3 mt-2">
-          <button matIconButton>
+          <button matIconButton (click)="store.moveToWishlist(item().product)">
             <mat-icon>favorite_border</mat-icon>
           </button>
-          <button matIconButton class="danger">
+          <button
+            matIconButton
+            class="danger"
+            (click)="store.removeFromCart(item().product)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </div>
