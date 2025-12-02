@@ -34,7 +34,7 @@ import { MatIcon } from '@angular/material/icon';
       />
 
       <div class="flex flex-col items-end">
-        <div class="text-right font-semibold text-lg">{{ total() }}</div>
+        <div class="text-right font-semibold text-lg">\${{ total() }}</div>
 
         <div class="flex -mx-3 gap-3 mt-2">
           <button matIconButton (click)="store.moveToWishlist(item().product)">

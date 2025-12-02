@@ -1,4 +1,4 @@
-import { MatButton } from '@angular/material/button';
+import { SummarizeOrder } from './../../components/summarize-order/summarize-order';
 import { Component } from '@angular/core';
 import { BackButton } from '../../components/back-button/back-button';
 import { ListCartItems } from './list-cart-items/list-cart-items';
@@ -6,7 +6,7 @@ import { TeaseWishlist } from './tease-wishlist/tease-wishlist';
 
 @Component({
   selector: 'app-view-cart',
-  imports: [BackButton, ListCartItems, TeaseWishlist],
+  imports: [BackButton, ListCartItems, TeaseWishlist, SummarizeOrder],
   template: `
     <div class="mx-auto max-w-[1200px] py-6 flex flex-col gap-4">
       <app-back-button navigateTo="/products/All">Back to Home</app-back-button>
@@ -17,6 +17,9 @@ import { TeaseWishlist } from './tease-wishlist/tease-wishlist';
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 ">
           <app-list-cart-items />
+        </div>
+        <div>
+          <app-summarize-order />
         </div>
       </div>
     </div>
