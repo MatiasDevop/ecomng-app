@@ -134,5 +134,7 @@ export const EcommerceStore = signalStore(
       });
       toaster.success('Product removed from cart.');
     },
+
+    proceedToCheckout: () => {},
   }))
 );
