@@ -4,7 +4,7 @@ import { HotToastService } from '@ngxpert/hot-toast';
 @Injectable({
   providedIn: 'root',
 })
-export class ToasterService {
+export class Toaster {
   toaster = inject(HotToastService);
 
   success(message: string) {

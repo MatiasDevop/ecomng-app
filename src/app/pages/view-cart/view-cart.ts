@@ -1,3 +1,4 @@
+import { SignInDialog } from './../../components/sign-in-dialog/sign-in-dialog';
 import { SummarizeOrder } from './../../components/summarize-order/summarize-order';
 import { Component, inject } from '@angular/core';
 import { BackButton } from '../../components/back-button/back-button';

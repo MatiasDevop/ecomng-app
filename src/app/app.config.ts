@@ -7,6 +7,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHotToastConfig } from '@ngxpert/hot-toast';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +19,13 @@ export const appConfig: ApplicationConfig = {
       stacking: 'depth',
       duration: 1000,
     }),
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {
+        appearance: 'outline',
+        subscriptSizing: 'dynamic',
+        floatLabel: 'never',
+      },
+    },
   ],
 };

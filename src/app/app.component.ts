@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header';
+import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 
 @Component({
   selector: 'app-root',
@@ -11,25 +12,5 @@ import { HeaderComponent } from './layout/header/header';
 export class AppComponent {
   title = signal<string>('ng-ecommerce');
 
-  ngOnInit() {
-    console.log('test palindromo', this.title());
-    console.log(this.isPalindrome('anaana'));
-  }
-
-  isPalindrome(str: string): boolean {
-    const size = str.length;
-    const halfSize = Math.floor(size / 2);
-    console.log('size', size, 'halfSize', halfSize);
-    let leftIndex = 0;
-    let strLength = size - 1;
-    while (leftIndex < halfSize) {
-      let leftValue = str.charAt(leftIndex);
-      let rightValue = str.charAt(strLength - leftIndex);
-      if (leftValue !== rightValue) return false;
-
-      leftIndex++;
-    }
-
-    return true;
-  }
+  ngOnInit() {}
 }
