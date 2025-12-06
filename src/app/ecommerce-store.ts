@@ -176,6 +176,12 @@ export const EcommerceStore = signalStore(
           router.navigate(['/checkout']);
         }
       },
+
+      signOut: () => {
+        patchState(store, { user: undefined });
+        router.navigate(['/products/All']);
+        toaster.success('Signed out ...');
+      },
     })
   )
 );

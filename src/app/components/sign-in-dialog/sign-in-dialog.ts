@@ -3,6 +3,7 @@ import { MatIconButton, MatAnchor, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import {
   MAT_DIALOG_DATA,
+  MatDialog,
   MatDialogClose,
   MatDialogRef,
 } from '@angular/material/dialog';
@@ -19,6 +20,7 @@ import {
 import { MatInput } from '@angular/material/input';
 import { SignInParams } from '../../models/user';
 import { EcommerceStore } from '../../ecommerce-store';
+import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
 
 @Component({
   selector: 'app-sign-in-dialog',
@@ -84,6 +86,13 @@ import { EcommerceStore } from '../../ecommerce-store';
         </mat-form-field>
         <button type="submit" matButton="filled" class="w-full">Sign In</button>
       </form>
+
+      <p class="text-sm text-gray-500 mt-2 text-center">
+        Don't have an account?
+        <a class="text-blue-600 cursor-pointer" (click)="openSignUpDialog()"
+          >Sign up</a
+        >
+      </p>
     </div>
   `,
   styles: ``,
@@ -95,6 +104,8 @@ export class SignInDialog {
   data = inject<{ checkout: boolean }>(MAT_DIALOG_DATA);
 
   dialogRef = inject(MatDialogRef);
+
+  matDialog = inject(MatDialog);
 
   passwordVisible = signal(false);
 
@@ -118,5 +129,13 @@ export class SignInDialog {
       checkout: this.data.checkout,
       dialogId: this.dialogRef.id,
     } as SignInParams);
+  }
+
+  openSignUpDialog() {
+    this.dialogRef.close();
+    this.matDialog.open(SignUpDialog, {
+      disableClose: true,
+      data: { checkout: this.data.checkout },
+    });
   }
 }

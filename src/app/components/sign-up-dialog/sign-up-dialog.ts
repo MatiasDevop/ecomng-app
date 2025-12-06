@@ -1,9 +1,77 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
+import { MatDialogClose } from '@angular/material/dialog';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatFormField } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-sign-up-dialog',
-  imports: [],
-  template: ` <p>sign-up-dialog works!</p> `,
+  imports: [MatIcon, MatDialogClose, MatFormField, ReactiveFormsModule],
+  template: `
+    <div class="p-8 min-w-[400px] flex flex-col">
+      <div class="flex justify-between">
+        <div>
+          <h2 class="text-xl font-medium mb-1">Sign Up</h2>
+          <p class="text-sm text-gray-500">Join us and start shopping today</p>
+        </div>
+        <button tabindex="-1" class="-mt-2" mat-dialog-close>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <form class="mt-6" [formGroup]="signUpForm">
+        <mat-form-field class="w-full mb-4">
+          <input
+            matInput
+            formControlName="name"
+            type="text"
+            placeholder="Name"
+            required
+          />
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="w-full mb-4">
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Email"
+            required
+            type="email"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-full mb-4">
+          <input
+            matInput
+            formControlName="password"
+            placeholder="Password"
+            required
+            type="password"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-full mb-4">
+          <input
+            matInput
+            formControlName="confirmPassword"
+            placeholder="Confirm Password"
+            required
+            type="password"
+          />
+        </mat-form-field>
+      </form>
+    </div>
+  `,
   styles: ``,
 })
-export class SignUpDialog {}
+export class SignUpDialog {
+  fb = inject(NonNullableFormBuilder);
+
+  signUpForm = this.fb.group({
+    name: ['Jhon D', Validators.required],
+    email: ['jond@test.com', [Validators.required, Validators.email]],
+    password: ['password123', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['password123', Validators.required],
+  });
+}

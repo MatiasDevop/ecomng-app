@@ -4,19 +4,25 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { EcommerceStore } from '../../ecommerce-store';
 import { MatBadge } from '@angular/material/badge';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-header-actions',
-  imports: [MatButtonModule, MatIconModule, MatIcon, RouterLink, MatBadge],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatIcon,
+    RouterLink,
+    MatBadge,
+    MatMenu,
+    MatMenuItem,
+    MatMenuTrigger,
+    MatDivider,
+  ],
   templateUrl: './header-actions.html',
   styles: ``,
 })
 export class HeaderActionsComponent {
   store = inject(EcommerceStore);
-  counter = signal<number>(0);
-  counterF = this.store.wishlistItems().length;
-
-  constructor() {
-    console.log(this.counterF);
-  }
 }
