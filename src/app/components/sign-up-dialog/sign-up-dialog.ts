@@ -1,16 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { MatDialogClose } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogClose,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
+import { MatAnchor } from '@angular/material/button';
+import { EcommerceStore } from '../../ecommerce-store';
+import { SignUpParams } from '../../models/user';
 
 @Component({
   selector: 'app-sign-up-dialog',
-  imports: [MatIcon, MatDialogClose, MatFormField, ReactiveFormsModule],
+  imports: [
+    MatIcon,
+    MatDialogClose,
+    MatFormField,
+    ReactiveFormsModule,
+    MatAnchor,
+  ],
   template: `
     <div class="p-8 min-w-[400px] flex flex-col">
       <div class="flex justify-between">
@@ -22,7 +35,7 @@ import { MatFormField } from '@angular/material/form-field';
           <mat-icon>close</mat-icon>
         </button>
       </div>
-      <form class="mt-6" [formGroup]="signUpForm">
+      <form class="mt-6" [formGroup]="signUpForm" (ngSubmit)="signUp()">
         <mat-form-field class="w-full mb-4">
           <input
             matInput
@@ -60,6 +73,14 @@ import { MatFormField } from '@angular/material/form-field';
             type="password"
           />
         </mat-form-field>
+        <button
+          type="submit"
+          [disabled]="signUpForm.invalid"
+          class="w-full"
+          matButton="filled"
+        >
+          Create Account
+        </button>
       </form>
     </div>
   `,
@@ -68,10 +89,33 @@ import { MatFormField } from '@angular/material/form-field';
 export class SignUpDialog {
   fb = inject(NonNullableFormBuilder);
 
+  dialogRef = inject(MatDialogRef);
+
+  store = inject(EcommerceStore);
+
+  data = inject<{ checkout: boolean }>(MAT_DIALOG_DATA);
+
   signUpForm = this.fb.group({
     name: ['Jhon D', Validators.required],
     email: ['jond@test.com', [Validators.required, Validators.email]],
     password: ['password123', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['password123', Validators.required],
   });
+
+  signUp() {
+    if (!this.signUpForm.valid) {
+      this.signUpForm.markAllAsTouched();
+      return;
+    }
+
+    const { name, email, password } = this.signUpForm.value;
+
+    this.store.signUp({
+      name: name!,
+      email: email!,
+      password: password!,
+      dialogId: this.dialogRef.id,
+      checkout: this.data.checkout,
+    } as SignUpParams);
+  }
 }
