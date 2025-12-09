@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import {
   MAT_DIALOG_DATA,
+  MatDialog,
   MatDialogClose,
   MatDialogRef,
 } from '@angular/material/dialog';
@@ -14,6 +15,8 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatAnchor } from '@angular/material/button';
 import { EcommerceStore } from '../../ecommerce-store';
 import { SignUpParams } from '../../models/user';
+import { SignInDialog } from '../sign-in-dialog/sign-in-dialog';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-sign-up-dialog',
@@ -23,6 +26,7 @@ import { SignUpParams } from '../../models/user';
     MatFormField,
     ReactiveFormsModule,
     MatAnchor,
+    MatInputModule,
   ],
   template: `
     <div class="p-8 min-w-[400px] flex flex-col">
@@ -54,6 +58,7 @@ import { SignUpParams } from '../../models/user';
             required
             type="email"
           />
+          <mat-icon matPrefix>email</mat-icon>
         </mat-form-field>
         <mat-form-field class="w-full mb-4">
           <input
@@ -63,6 +68,7 @@ import { SignUpParams } from '../../models/user';
             required
             type="password"
           />
+          <mat-icon matPrefix>lock</mat-icon>
         </mat-form-field>
         <mat-form-field class="w-full mb-4">
           <input
@@ -72,6 +78,7 @@ import { SignUpParams } from '../../models/user';
             required
             type="password"
           />
+          <mat-icon matPrefix>lock</mat-icon>
         </mat-form-field>
         <button
           type="submit"
@@ -82,6 +89,12 @@ import { SignUpParams } from '../../models/user';
           Create Account
         </button>
       </form>
+      <p class="text-sm text-gray-500 mt-2 text-center">
+        Already have an account?
+        <a class="text-blue-600 cursor-pointer" (click)="openSignInDialog()">
+          Sign in
+        </a>
+      </p>
     </div>
   `,
   styles: ``,
@@ -92,7 +105,7 @@ export class SignUpDialog {
   dialogRef = inject(MatDialogRef);
 
   store = inject(EcommerceStore);
-
+  matDialog = inject(MatDialog);
   data = inject<{ checkout: boolean }>(MAT_DIALOG_DATA);
 
   signUpForm = this.fb.group({
@@ -115,7 +128,17 @@ export class SignUpDialog {
       email: email!,
       password: password!,
       dialogId: this.dialogRef.id,
-      checkout: this.data.checkout,
+      checkout: this.data?.checkout,
     } as SignUpParams);
+  }
+
+  openSignInDialog() {
+    this.dialogRef.close();
+    this.matDialog.open(SignInDialog, {
+      disableClose: true,
+      data: {
+        checkout: this.data?.checkout,
+      },
+    });
   }
 }

@@ -32,7 +32,7 @@
     </button>
   </mat-menu>
   } @else {
-  <button matButton>Sign in</button>
-  <button matButton="filled">Sign up</button>
+  <button matButton (click)="openSignInDialog()">Sign in</button>
+  <button matButton="filled" (click)="openSignUpDialog()">Sign up</button>
   }
 </div>

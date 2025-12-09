@@ -17,7 +17,7 @@ import {
   MatPrefix,
   MatSuffix,
 } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { SignInParams } from '../../models/user';
 import { EcommerceStore } from '../../ecommerce-store';
 import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
@@ -35,6 +35,7 @@ import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
     MatAnchor,
     MatButton,
     ReactiveFormsModule,
+    MatInputModule,
   ],
   template: `
     <div class="p-8 max-w-[400px] flex flex-col">
@@ -55,14 +56,14 @@ import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
         </button>
       </div>
       <form class="mt-6" [formGroup]="signInForm" (ngSubmit)="signIn()">
-        <mat-form-field class="w-full mb-4">
+        <mat-form-field class="w-full mb-6">
           <input
             matInput
             type="email"
             formControlName="email"
             placeholder="Enter your email"
           />
-          <mat-icon>email</mat-icon>
+          <mat-icon matPrefix>email</mat-icon>
         </mat-form-field>
         <mat-form-field class="w-full mb-6">
           <input
@@ -126,7 +127,7 @@ export class SignInDialog {
     this.store.signIn({
       email,
       password,
-      checkout: this.data.checkout,
+      checkout: this.data?.checkout,
       dialogId: this.dialogRef.id,
     } as SignInParams);
   }
@@ -135,7 +136,7 @@ export class SignInDialog {
     this.dialogRef.close();
     this.matDialog.open(SignUpDialog, {
       disableClose: true,
-      data: { checkout: this.data.checkout },
+      data: { checkout: this.data?.checkout },
     });
   }
 }
