@@ -38,7 +38,7 @@ import { MatButton } from '@angular/material/button';
 
             <ng-container actionButtons>
               <button
-                mat-button="filled"
+                matButton="filled"
                 class="w-full mt-6 py-3"
                 [disabled]="store.loading()"
                 (click)="store.placeOrder()"
