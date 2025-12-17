@@ -175,6 +175,7 @@ export const EcommerceStore = signalStore(
         const user = store.user();
         if (!user) {
           toaster.error('Please login before placing the order.');
+          patchState(store, { loading: false });
           return;
         }
 
@@ -235,7 +236,7 @@ export const EcommerceStore = signalStore(
 
       signOut: () => {
         patchState(store, { user: undefined });
-        router.navigate(['/products/All']);
+        //router.navigate(['/products/All']);
         toaster.success('Signed out ...');
       },
     })
