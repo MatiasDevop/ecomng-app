@@ -17,6 +17,7 @@ import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 import { SignInParams, SignUpParams, User } from './models/user';
 import { Router } from '@angular/router';
 import { Order } from './models/order';
+import { withStorageSync } from '@angular-architects/ngrx-toolkit';
 
 export type EcommerceState = {
   products: Product[];
@@ -37,9 +38,17 @@ export const EcommerceStore = signalStore(
     category: 'All', // Default category
     wishlistItems: [], // Initially empty wishlist
     cartItems: [], // Initially empty cart
-    user: undefined,
-    loading: false,
+    user: undefined, // No user logged in
+    loading: false, // Loading state
   } as EcommerceState),
+  withStorageSync({
+    key: 'mordern-store',
+    select: ({ wishlistItems, cartItems, user }) => ({
+      wishlistItems,
+      cartItems,
+      user,
+    }),
+  }),
   withComputed(({ category, products, wishlistItems, cartItems }) => ({
     filteredProducts: computed(() => {
       if (category() === 'All') return products();
