@@ -4,6 +4,7 @@
   <img
     [src]="product().imageUrl"
     class="w-full h-[300px] object-cover rounded-t-xl"
+    [routerLink]="['/product', product().id]"
   />
   <!-- here in ngcontent we will handle different types of content projection -->
   <ng-content />

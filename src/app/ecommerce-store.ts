@@ -27,6 +27,7 @@ export type EcommerceState = {
   user: User | undefined;
 
   loading: boolean;
+  selectedProductId: string | undefined;
 };
 
 export const EcommerceStore = signalStore(
@@ -40,6 +41,7 @@ export const EcommerceStore = signalStore(
     cartItems: [], // Initially empty cart
     user: undefined, // No user logged in
     loading: false, // Loading state
+    selectedProductId: undefined,
   } as EcommerceState),
   withStorageSync({
     key: 'mordern-store',
@@ -49,16 +51,23 @@ export const EcommerceStore = signalStore(
       user,
     }),
   }),
-  withComputed(({ category, products, wishlistItems, cartItems }) => ({
-    filteredProducts: computed(() => {
-      if (category() === 'All') return products();
-      return products().filter((p) => p.category === category().toLowerCase());
-    }),
-    wishlistCount: computed(() => wishlistItems().length),
-    cartCount: computed(() =>
-      cartItems().reduce((acc, item) => acc + item.quantity, 0)
-    ),
-  })),
+  withComputed(
+    ({ category, products, wishlistItems, cartItems, selectedProductId }) => ({
+      filteredProducts: computed(() => {
+        if (category() === 'All') return products();
+        return products().filter(
+          (p) => p.category === category().toLowerCase()
+        );
+      }),
+      wishlistCount: computed(() => wishlistItems().length),
+      cartCount: computed(() =>
+        cartItems().reduce((acc, item) => acc + item.quantity, 0)
+      ),
+      selectedProduct: computed(() =>
+        products().find((p) => p.id === selectedProductId())
+      ),
+    })
+  ),
   withMethods(
     (
       store,
@@ -68,6 +77,9 @@ export const EcommerceStore = signalStore(
     ) => ({
       setCategory: signalMethod<string>((category: string) => {
         patchState(store, { category });
+      }),
+      setProductId: signalMethod<string>((productId: string) => {
+        patchState(store, { selectedProductId: productId });
       }),
       addToWishlist: (product: Product) => {
         const updatedWishlistItems = produce(store.wishlistItems(), (draft) => {
@@ -79,7 +91,6 @@ export const EcommerceStore = signalStore(
         patchState(store, { wishlistItems: updatedWishlistItems });
         toaster.success('Product added to wishlist!');
       },
-
       removeFromWishlist: (product: Product) => {
         patchState(store, {
           wishlistItems: store
