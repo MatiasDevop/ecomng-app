@@ -14,6 +14,7 @@ import { MatIcon } from '@angular/material/icon';
           [src]="item().product.imageUrl"
           class="w-24 h-24 rounded-lg object-cover"
           alt=""
+          [style.view-transition-name]="'product-image-' + item().product.id"
         />
         <div>
           <div class="text-gray-900 text-lg font-semibold">

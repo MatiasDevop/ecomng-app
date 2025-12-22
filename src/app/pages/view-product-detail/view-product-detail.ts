@@ -8,7 +8,7 @@ import { ProductInfo } from './product-info/product-info';
   imports: [BackButton, ProductInfo],
   template: `
     <div class="mx-auto max-w-[1200px] py-6">
-      <app-back-button class="mb-4" navigateTo="/products/All">
+      <app-back-button class="mb-4" [navigateTo]="backRoute()">
         Continue Shopping
       </app-back-button>
       @if (store.selectedProduct(); as product) {
@@ -16,6 +16,7 @@ import { ProductInfo } from './product-info/product-info';
         <img
           [src]="product.imageUrl"
           class="w-[500px] h-[500px] object-cover rounded-lg"
+          [style.view-transition-name]="'product-image-' + product.id"
         />
         <div class="flex-1">
           <app-product-info [product]="product" />
