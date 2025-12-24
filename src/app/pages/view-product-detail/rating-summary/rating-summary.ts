@@ -1,9 +1,10 @@
 import { Component, computed, input } from '@angular/core';
 import { Product } from '../../../models/product';
+import { StarRating } from '../../../components/star-rating/star-rating';
 
 @Component({
   selector: 'app-rating-summary',
-  imports: [],
+  imports: [StarRating],
   template: `
     <div class="flex items-center gap-8 mb-6 p-4 bg-gray-50 rounded-lg">
       <!-- Overall Rating Display: -->
@@ -11,7 +12,28 @@ import { Product } from '../../../models/product';
         <div class="text-4xl font-bold text-gray-900 mb-1">
           {{ product().rating }}
         </div>
-        <div></div>
+        <div class="flex items-center mb-2">
+          <app-star-rating [rating]="product().rating" />
+        </div>
+        <div class="text-sm text-gray-500">
+          Based on {{ totalReviews() }} reviews
+        </div>
+      </div>
+      <div class="flex-1">
+        @for (breakdown of ratingBreakdown(); track breakdown.stars) {
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-sm w-4">{{ breakdown.stars }} stars ⭐</span>
+          <div class="flex-1 bg-gray-200 rounded-full h-2 mx-2">
+            <div
+              class="bg-yellow-400 h-2 rounded-full transition-all duration-300"
+              [style.width.%]="breakdown.percentage"
+            ></div>
+          </div>
+          <span class="text-sm text-gray-600 w-8 text-right">{{
+            breakdown.count
+          }}</span>
+        </div>
+        }
       </div>
     </div>
   `,
