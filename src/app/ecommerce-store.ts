@@ -18,6 +18,7 @@ import { SignInParams, SignUpParams, User } from './models/user';
 import { Router } from '@angular/router';
 import { Order } from './models/order';
 import { withStorageSync } from '@angular-architects/ngrx-toolkit';
+import { AddReviewParams, UserReview } from './models/user-review';
 
 export type EcommerceState = {
   products: Product[];
@@ -28,6 +29,7 @@ export type EcommerceState = {
 
   loading: boolean;
   selectedProductId: string | undefined;
+  writeReview: boolean;
 };
 
 export const EcommerceStore = signalStore(
@@ -42,6 +44,7 @@ export const EcommerceStore = signalStore(
     user: undefined, // No user logged in
     loading: false, // Loading state
     selectedProductId: undefined,
+    writeReview: false,
   } as EcommerceState),
   withStorageSync({
     key: 'mordern-store',
@@ -258,6 +261,36 @@ export const EcommerceStore = signalStore(
         patchState(store, { user: undefined });
         //router.navigate(['/products/All']);
         toaster.success('Signed out ...');
+      },
+
+      showWriteReview: () => {
+        patchState(store, { writeReview: true });
+      },
+
+      hideWriteReview: () => {
+        patchState(store, { writeReview: false });
+      },
+
+      addReview: async ({ title, comment, rating }: AddReviewParams) => {
+        patchState(store, { loading: true });
+        const product = store
+          .products()
+          .find((p) => p.id === store.selectedProductId());
+        if (!product) {
+          patchState(store, { loading: false });
+          return;
+        }
+
+        const review: UserReview = {
+          id: crypto.randomUUID(),
+          title,
+          rating,
+          comment,
+          productId: product.id,
+          userName: store.user()?.name || '',
+          userImageUrl: store.user()?.imageUrl || '',
+          reviewDate: new Date(),
+        };
       },
     })
   )
