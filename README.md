@@ -1,59 +1,42 @@
 # NgEcommerce
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+An Angular 20 standalone app demonstrating modern patterns: Signals-based state via `@ngrx/signals`, Angular Material (M3) theming, Tailwind CSS utility styling, zoneless change detection, and router features like view transitions and component input binding.
 
-## Development server
-
-To start a local development server, run:
+## Quick Start
 
 ```bash
-ng serve
+npm install
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Visit http://localhost:4200.
 
-## Code scaffolding
+## Study Guide & Documentation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+A comprehensive study guide lives in the `docs/` folder:
 
-```bash
-ng generate component component-name
-```
+- Overview: [docs/01-overview.md](docs/01-overview.md)
+- Routing: [docs/02-routing-and-navigation.md](docs/02-routing-and-navigation.md)
+- State: [docs/03-state-management.md](docs/03-state-management.md)
+- Components & Pages: [docs/04-components-and-pages.md](docs/04-components-and-pages.md)
+- Data Models: [docs/05-data-models.md](docs/05-data-models.md)
+- UI & Styling: [docs/06-ui-styling.md](docs/06-ui-styling.md)
+- Dialogs & Forms: [docs/07-dialogs-and-forms.md](docs/07-dialogs-and-forms.md)
+- RxJS Demos: [docs/08-rxjs-in-app.md](docs/08-rxjs-in-app.md)
+- Persistence: [docs/09-persistence-and-storage.md](docs/09-persistence-and-storage.md)
+- Performance & Practices: [docs/10-performance-and-best-practices.md](docs/10-performance-and-best-practices.md)
+- Interview Prep Q&A: [docs/11-interview-prep.md](docs/11-interview-prep.md)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Start with [docs/01-overview.md](docs/01-overview.md) for the big picture.
 
-```bash
-ng generate --help
-```
+## Dev Commands
 
-## Building
+- Serve: `npm start` (or `ng serve`)
+- Build: `npm run build`
+- Test: `npm test`
 
-To build the project run:
+## Notes
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- This app uses standalone components; there are no NgModules.
+- Signals power local and global state; see `src/app/ecommerce-store.ts`.
+- Tailwind CSS v4 and Angular Material styles are combined in `src/styles.scss`.
