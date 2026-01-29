@@ -6,17 +6,14 @@
     class="w-full h-[300px] object-cover rounded-t-xl"
     [routerLink]="['/product', product().id]"
     [style.view-transition-name]="'product-image-' + product().id"
+    alt="product image"
   />
   <!-- here in ngcontent we will handle different types of content projection -->
   <ng-content />
 
   <div class="p-5 flex flex-col flex-1">
-    <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">
-      {{ product().name }}
-    </h3>
-    <p class="text-gray-600 flex-1 text-sm mb-4 leading-relaxed">
-      {{ product().description }}
-    </p>
+    <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">{{ product().name }}</h3>
+    <p class="text-gray-600 flex-1 text-sm mb-4 leading-relaxed">{{ product().description }}</p>
 
     <app-star-rating class="mb-3" [rating]="product().rating">
       ({{ product().reviewCount }})
@@ -27,9 +24,7 @@
     </div>
 
     <div class="flex items-center justify-between mt-auto">
-      <span class="text-2xl font-bold text-gray-900">
-        ${{ product().price }}
-      </span>
+      <span class="text-2xl font-bold text-gray-900"> ${{ product().price }} </span>
       <button
         matButton="filled"
         class="flex items-center gap-2"

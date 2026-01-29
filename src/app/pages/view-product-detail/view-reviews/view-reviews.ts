@@ -14,20 +14,18 @@ import { WriteReview } from '../write-review/write-review';
     <div appViewPanel>
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-extrabold">Customer Reviews</h2>
-        @if(store.user()){
-        <button matButton="filled" (click)="store.showWriteReview()">
-          Write a Review
-        </button>
+        @if (store.user()) {
+          <button matButton="filled" (click)="store.showWriteReview()">Write a Review</button>
         }
       </div>
       @if (store.writeReview()) {
-      <app-write-review />
+        <app-write-review />
       }
 
       <app-rating-summary [product]="product()" />
       <div class="flex flex-col gap-6">
         @for (review of sortedReviews(); track review.id) {
-        <app-view-review-item [review]="review" />
+          <app-view-review-item [review]="review" />
         }
       </div>
     </div>
@@ -40,7 +38,7 @@ export class ViewReviews {
 
   sortedReviews = computed(() => {
     return [...this.product().reviews].sort(
-      (a, b) => b.reviewDate.getTime() - a.reviewDate.getTime()
+      (a, b) => b.reviewDate.getTime() - a.reviewDate.getTime(),
     );
   });
 }

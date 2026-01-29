@@ -23,11 +23,7 @@ import { MatInput } from '@angular/material/input';
   template: `
     <div appViewPanel>
       <h2 class="text-xl font-semibold mb-6">Write a Review</h2>
-      <form
-        [formGroup]="reviewForm"
-        (ngSubmit)="saveReview()"
-        class="flex flex-col gap-4"
-      >
+      <form [formGroup]="reviewForm" (ngSubmit)="saveReview()" class="flex flex-col gap-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
           <mat-form-field appearance="fill" class="w-full">
             <mat-label>Review title</mat-label>
@@ -41,7 +37,7 @@ import { MatInput } from '@angular/material/input';
           <mat-form-field>
             <mat-select formControlName="rating" placeholder="Rating">
               @for (option of ratingOptions(); track option.value) {
-              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+                <mat-option [value]="option.value">{{ option.label }}</mat-option>
               }
             </mat-select>
           </mat-form-field>
@@ -60,11 +56,7 @@ import { MatInput } from '@angular/material/input';
           <button matButton="filled" type="submit" [disabled]="store.loading()">
             {{ store.loading() ? 'Submitting...' : 'Submit Review' }}
           </button>
-          <button
-            matButton="outlined"
-            type="button"
-            (click)="store.hideWriteReview()"
-          >
+          <button matButton="outlined" type="button" (click)="store.hideWriteReview()">
             Cancel
           </button>
         </div>

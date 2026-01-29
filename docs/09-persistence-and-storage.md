@@ -6,7 +6,7 @@ The app uses `withStorageSync` from `@angular-architects/ngrx-toolkit` to persis
 withStorageSync({
   key: 'mordern-store',
   select: ({ wishlistItems, cartItems, user }) => ({ wishlistItems, cartItems, user }),
-})
+});
 ```
 
 - Only `wishlistItems`, `cartItems`, and `user` are persisted.

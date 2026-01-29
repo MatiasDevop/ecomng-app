@@ -54,30 +54,17 @@ export const EcommerceStore = signalStore(
       user,
     }),
   }),
-  withComputed(
-    ({ category, products, wishlistItems, cartItems, selectedProductId }) => ({
-      filteredProducts: computed(() => {
-        if (category() === 'All') return products();
-        return products().filter(
-          (p) => p.category === category().toLowerCase()
-        );
-      }),
-      wishlistCount: computed(() => wishlistItems().length),
-      cartCount: computed(() =>
-        cartItems().reduce((acc, item) => acc + item.quantity, 0)
-      ),
-      selectedProduct: computed(() =>
-        products().find((p) => p.id === selectedProductId())
-      ),
-    })
-  ),
+  withComputed(({ category, products, wishlistItems, cartItems, selectedProductId }) => ({
+    filteredProducts: computed(() => {
+      if (category() === 'All') return products();
+      return products().filter((p) => p.category === category().toLowerCase());
+    }),
+    wishlistCount: computed(() => wishlistItems().length),
+    cartCount: computed(() => cartItems().reduce((acc, item) => acc + item.quantity, 0)),
+    selectedProduct: computed(() => products().find((p) => p.id === selectedProductId())),
+  })),
   withMethods(
-    (
-      store,
-      toaster = inject(Toaster),
-      matDialog = inject(MatDialog),
-      router = inject(Router)
-    ) => ({
+    (store, toaster = inject(Toaster), matDialog = inject(MatDialog), router = inject(Router)) => ({
       setCategory: signalMethod<string>((category: string) => {
         patchState(store, { category });
       }),
@@ -96,9 +83,7 @@ export const EcommerceStore = signalStore(
       },
       removeFromWishlist: (product: Product) => {
         patchState(store, {
-          wishlistItems: store
-            .wishlistItems()
-            .filter((p) => p.id !== product.id),
+          wishlistItems: store.wishlistItems().filter((p) => p.id !== product.id),
         });
         toaster.success('Product removed from wishlist.');
       },
@@ -123,16 +108,12 @@ export const EcommerceStore = signalStore(
         });
         patchState(store, { cartItems: updatedCartItems });
         toaster.success(
-          existingItemIndex !== -1
-            ? 'Product added again'
-            : 'Product added to cart!'
+          existingItemIndex !== -1 ? 'Product added again' : 'Product added to cart!',
         );
       },
 
       setItemQuantity(params: { productId: string; quantity: number }) {
-        const index = store
-          .cartItems()
-          .findIndex((c) => c.product.id === params.productId);
+        const index = store.cartItems().findIndex((c) => c.product.id === params.productId);
         const updated = produce(store.cartItems(), (draft) => {
           draft[index].quantity = params.quantity;
         });
@@ -153,9 +134,7 @@ export const EcommerceStore = signalStore(
       },
 
       moveToWishlist: (product: Product) => {
-        const updatedCartItems = store
-          .cartItems()
-          .filter((item) => item.product.id !== product.id);
+        const updatedCartItems = store.cartItems().filter((item) => item.product.id !== product.id);
         const updatedWishlistItems = produce(store.wishlistItems(), (draft) => {
           if (!draft.find((p) => p.id === product.id)) {
             draft.push(product);
@@ -171,9 +150,7 @@ export const EcommerceStore = signalStore(
 
       removeFromCart: (product: Product) => {
         patchState(store, {
-          cartItems: store
-            .cartItems()
-            .filter((c) => c.product.id !== product.id),
+          cartItems: store.cartItems().filter((c) => c.product.id !== product.id),
         });
         toaster.success('Product removed from cart.');
       },
@@ -206,12 +183,7 @@ export const EcommerceStore = signalStore(
           id: crypto.randomUUID(),
           userId: user.id,
           total: Math.round(
-            store
-              .cartItems()
-              .reduce(
-                (acc, item) => acc + item.product.price * item.quantity,
-                0
-              )
+            store.cartItems().reduce((acc, item) => acc + item.product.price * item.quantity, 0),
           ),
           items: store.cartItems(),
           paymentStatus: 'success',
@@ -273,9 +245,7 @@ export const EcommerceStore = signalStore(
 
       addReview: async ({ title, comment, rating }: AddReviewParams) => {
         patchState(store, { loading: true });
-        const product = store
-          .products()
-          .find((p) => p.id === store.selectedProductId());
+        const product = store.products().find((p) => p.id === store.selectedProductId());
         if (!product) {
           patchState(store, { loading: false });
           return;
@@ -292,6 +262,6 @@ export const EcommerceStore = signalStore(
           reviewDate: new Date(),
         };
       },
-    })
-  )
+    }),
+  ),
 );

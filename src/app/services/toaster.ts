@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class Toaster {
   toaster = inject(HotToastService);
-  observable: Observable<any> = new Observable((observer) => {
+  observable: Observable<string> = new Observable((observer) => {
     observer.next('Hello World!');
     observer.next('Hello Again!');
     observer.complete();

@@ -8,13 +8,13 @@ import { MatIcon } from '@angular/material/icon';
     <div class="flex items-center">
       <div class="flex items-center mr-2">
         @for (star of starArray(); track $index) {
-        <mat-icon
-          class="!text-lg"
-          [inline]="true"
-          [class]="star ? '!text-yellow-400' : '!text-gray-300'"
-        >
-          star
-        </mat-icon>
+          <mat-icon
+            class="!text-lg"
+            [inline]="true"
+            [class]="star ? '!text-yellow-400' : '!text-gray-300'"
+          >
+            star
+          </mat-icon>
         }
       </div>
       <span class="text-sm text-gray-500">

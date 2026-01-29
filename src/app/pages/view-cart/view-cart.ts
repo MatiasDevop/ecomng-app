@@ -1,4 +1,3 @@
-import { SignInDialog } from './../../components/sign-in-dialog/sign-in-dialog';
 import { SummarizeOrder } from './../../components/summarize-order/summarize-order';
 import { Component, inject } from '@angular/core';
 import { BackButton } from '../../components/back-button/back-button';
@@ -9,13 +8,7 @@ import { EcommerceStore } from '../../ecommerce-store';
 
 @Component({
   selector: 'app-view-cart',
-  imports: [
-    BackButton,
-    ListCartItems,
-    TeaseWishlist,
-    SummarizeOrder,
-    MatAnchor,
-  ],
+  imports: [BackButton, ListCartItems, TeaseWishlist, SummarizeOrder, MatAnchor],
   template: `
     <div class="mx-auto max-w-[1200px] py-6 flex flex-col gap-4">
       <app-back-button navigateTo="/products/All">Back to Home</app-back-button>

@@ -8,13 +8,7 @@ import { EmptyWishlist } from './empty-wishlist/empty-wishlist';
 
 @Component({
   selector: 'app-my-wishlist',
-  imports: [
-    BackButton,
-    ProductCardComponent,
-    MatIcon,
-    MatIconButton,
-    EmptyWishlist,
-  ],
+  imports: [BackButton, ProductCardComponent, MatIcon, MatIconButton, EmptyWishlist],
   templateUrl: './my-wishlist.html',
   styles: ``,
 })

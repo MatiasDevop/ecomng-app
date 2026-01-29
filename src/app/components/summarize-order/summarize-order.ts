@@ -38,10 +38,8 @@ export class SummarizeOrder {
 
   subtotal = computed(() =>
     Math.round(
-      this.store
-        .cartItems()
-        .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
-    )
+      this.store.cartItems().reduce((acc, item) => acc + item.product.price * item.quantity, 0),
+    ),
   );
 
   tax = computed(() => Math.round(this.subtotal() * 0.21));

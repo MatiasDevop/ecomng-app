@@ -19,7 +19,7 @@ import { DatePipe } from '@angular/common';
           <div class="text-lg font-semibold">{{ review().userName }}</div>
           <div class="flex items-center mb-1">
             <app-star-rating [rating]="review().rating" />
-            <div>{{ review().reviewDate | date : 'MMM d, yyyy' }}</div>
+            <div>{{ review().reviewDate | date: 'MMM d, yyyy' }}</div>
           </div>
           <div class="text-base font-semibold mb-1">{{ review().title }}</div>
           <div class="text-sm text-gray-500">{{ review().comment }}</div>

@@ -25,9 +25,7 @@ export class ToggleWishlistButtonComponent {
 
   store = inject(EcommerceStore);
 
-  isInWishlist = computed(() =>
-    this.store.wishlistItems().find((p) => p.id === this.product().id)
-  );
+  isInWishlist = computed(() => this.store.wishlistItems().find((p) => p.id === this.product().id));
   toggleWishList(product: Product) {
     if (this.isInWishlist()) {
       this.store.removeFromWishlist(product);

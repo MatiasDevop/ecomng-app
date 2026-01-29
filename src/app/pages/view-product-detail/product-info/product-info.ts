@@ -36,10 +36,7 @@ import { StarRating } from '../../../components/star-rating/star-rating';
     </p>
     <div class="flex items-center gap-2 mb-3 pt-4">
       <span class="font-semibold">Quantity:</span>
-      <app-qty-selector
-        [quantity]="quantity()"
-        (qtyUpdated)="quantity.set($event)"
-      />
+      <app-qty-selector [quantity]="quantity()" (qtyUpdated)="quantity.set($event)" />
     </div>
     <div class="flex gap-4 mb border-b border-gray-200 pb-4">
       <button

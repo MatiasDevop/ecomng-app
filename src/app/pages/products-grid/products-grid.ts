@@ -1,17 +1,8 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
-import { Product } from '../../models/product';
+import { Component, inject, input, signal } from '@angular/core';
 import { ProductCardComponent } from '../../components/product-card/product-card';
-import {
-  MatSidenavContainer,
-  MatSidenavContent,
-  MatSidenav,
-} from '@angular/material/sidenav';
+import { MatSidenavContainer, MatSidenavContent, MatSidenav } from '@angular/material/sidenav';
 
-import {
-  MatListItem,
-  MatNavList,
-  MatListItemTitle,
-} from '@angular/material/list';
+import { MatListItem, MatNavList, MatListItemTitle } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { EcommerceStore } from '../../ecommerce-store';

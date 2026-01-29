@@ -11,9 +11,7 @@ import { MatButton } from '@angular/material/button';
   imports: [BackButton, ShippingForm, PaymentForm, SummarizeOrder, MatButton],
   template: `
     <div class="mx-auto max-w-[1200px] py-6">
-      <app-back-button class="mb-4" navigateTo="/cart"
-        >Back to cart</app-back-button
-      >
+      <app-back-button class="mb-4" navigateTo="/cart">Back to cart</app-back-button>
 
       <h1 class="text-3xl font-semibold mb-4">Checkout Page</h1>
 
@@ -27,12 +25,10 @@ import { MatButton } from '@angular/material/button';
           <app-summarize-order>
             <ng-container checkoutItems>
               @for (item of store.cartItems(); track item.product.id) {
-              <div class="text-sm flex justify-between">
-                <span>{{ item.product.name }} x {{ item.quantity }}</span>
-                <span>
-                  \${{ (item.product.price * item.quantity).toFixed(2) }}</span
-                >
-              </div>
+                <div class="text-sm flex justify-between">
+                  <span>{{ item.product.name }} x {{ item.quantity }}</span>
+                  <span> \${{ (item.product.price * item.quantity).toFixed(2) }}</span>
+                </div>
               }
             </ng-container>
 

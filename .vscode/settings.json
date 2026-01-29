@@ -5,12 +5,7 @@
     "angular-html": "html"
   },
   "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass",
-    "[class]"
-  ],
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass", "[class]"],
   "tailwindCSS.experimental.classRegex": [
     ["class:\\s*[\"'`]([^\"'`]*)[\"'`]", "[\"'`]([^\"'`]*)[\"'`]"],
     ["\\[class\\]=[\"'`]([^\"'`]*)[\"'`]"]

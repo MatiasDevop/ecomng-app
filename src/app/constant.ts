@@ -7,8 +7,7 @@ export const products: Product[] = [
     name: 'Smartphone XYZ',
     description: 'A high-quality smartphone with advanced features.',
     price: 699.99,
-    imageUrl:
-      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400',
     rating: 4.5,
     reviewCount: 120,
     inStock: true,
@@ -22,8 +21,7 @@ export const products: Product[] = [
           'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=64&h=64&fit=crop',
         rating: 5,
         title: 'Great performance!',
-        comment:
-          'Fast, smooth, and the camera is excellent for everyday shots.',
+        comment: 'Fast, smooth, and the camera is excellent for everyday shots.',
         reviewDate: new Date('2025-07-12'),
       },
       {
@@ -34,8 +32,7 @@ export const products: Product[] = [
           'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=64&h=64&fit=crop',
         rating: 4,
         title: 'Solid phone, minor gripes',
-        comment:
-          'Battery life is decent but could be better. Overall very good.',
+        comment: 'Battery life is decent but could be better. Overall very good.',
         reviewDate: new Date('2025-08-03'),
       },
     ],
@@ -43,11 +40,9 @@ export const products: Product[] = [
   {
     id: '2',
     name: 'Wireless Headphones ABC',
-    description:
-      'Noise-cancelling wireless headphones with superior sound quality.',
+    description: 'Noise-cancelling wireless headphones with superior sound quality.',
     price: 199.99,
-    imageUrl:
-      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
     rating: 4.7,
     reviewCount: 85,
     inStock: false,
@@ -61,8 +56,7 @@ export const products: Product[] = [
           'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop',
         rating: 5,
         title: 'Amazing noise cancellation',
-        comment:
-          'Blocks out office chatter completely. Comfortable for long sessions.',
+        comment: 'Blocks out office chatter completely. Comfortable for long sessions.',
         reviewDate: new Date('2025-06-21'),
       },
       {
@@ -81,11 +75,9 @@ export const products: Product[] = [
   {
     id: '3',
     name: '4K Ultra HD TV',
-    description:
-      'Experience stunning visuals with this 4K Ultra HD television.',
+    description: 'Experience stunning visuals with this 4K Ultra HD television.',
     price: 999.99,
-    imageUrl:
-      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400',
     rating: 4.8,
     reviewCount: 60,
     inStock: true,
@@ -110,8 +102,7 @@ export const products: Product[] = [
           'https://images.unsplash.com/photo-1546525848-3ce03ca516f6?w=64&h=64&fit=crop',
         rating: 4,
         title: 'Excellent value',
-        comment:
-          'Great colors and contrast. Speakers are fine, but I use a soundbar.',
+        comment: 'Great colors and contrast. Speakers are fine, but I use a soundbar.',
         reviewDate: new Date('2025-03-02'),
       },
     ],
@@ -122,8 +113,7 @@ export const products: Product[] = [
     name: "Men's Casual Shirt",
     description: 'A comfortable and stylish casual shirt for everyday wear.',
     price: 29.99,
-    imageUrl:
-      'https://images.unsplash.com/photo-1521334884684-d80222895322?w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1521334884684-d80222895322?w=400',
     rating: 4.3,
     reviewCount: 45,
     inStock: true,
@@ -158,8 +148,7 @@ export const products: Product[] = [
     name: "Women's Summer Dress",
     description: 'A light and breezy summer dress perfect for warm weather.',
     price: 49.99,
-    imageUrl:
-      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400',
     rating: 4.6,
     reviewCount: 70,
     inStock: true,

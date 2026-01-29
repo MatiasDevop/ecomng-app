@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header';
-import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 import { Toaster } from './services/toaster';
 import {
   catchError,
@@ -51,7 +50,7 @@ export class AppComponent {
     this.observable
       ?.pipe(
         map((x: any) => x.message),
-        filter((x: any) => typeof x == 'string')
+        filter((x: any) => typeof x == 'string'),
       )
       .subscribe({
         next: (v) => console.log('observer got a next value: ' + v),
@@ -65,7 +64,7 @@ export class AppComponent {
         catchError((err) => {
           console.error('Error caught in handleErrors: ', err);
           return [];
-        })
+        }),
       )
       .subscribe();
   }
@@ -78,7 +77,7 @@ export class AppComponent {
             observer.next('Data processed: ' + data.message);
             observer.complete();
           });
-        })
+        }),
       )
       .subscribe({
         next: (v) => console.log('observer got a next value: ' + v),
@@ -93,11 +92,11 @@ export class AppComponent {
         mergeMap((ids) =>
           from(ids).pipe(
             mergeMap(
-              (id) => of({ id: id, name: 'User ' + id }) //this could be an HTTP request
+              (id) => of({ id: id, name: 'User ' + id }), //this could be an HTTP request
               // Simulate async operation
-            )
-          )
-        )
+            ),
+          ),
+        ),
       )
       .subscribe({
         next: (users) => console.log('observer got a next value: ', users),
@@ -108,8 +107,8 @@ export class AppComponent {
     this.userIds$
       .pipe(
         concatMap(
-          (id) => of({ id: id, name: 'User ' + id }) //this could be an HTTP request
-        )
+          (id) => of({ id: id, name: 'User ' + id }), //this could be an HTTP request
+        ),
       )
       .subscribe({
         next: (users) => console.log('observer got a next value: ', users),

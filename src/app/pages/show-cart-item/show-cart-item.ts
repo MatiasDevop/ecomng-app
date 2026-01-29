@@ -29,7 +29,7 @@ import { MatIcon } from '@angular/material/icon';
         (qtyUpdated)="
           store.setItemQuantity({
             productId: item().product.id,
-            quantity: $event
+            quantity: $event,
           })
         "
       />
@@ -41,11 +41,7 @@ import { MatIcon } from '@angular/material/icon';
           <button matIconButton (click)="store.moveToWishlist(item().product)">
             <mat-icon>favorite_border</mat-icon>
           </button>
-          <button
-            matIconButton
-            class="danger"
-            (click)="store.removeFromCart(item().product)"
-          >
+          <button matIconButton class="danger" (click)="store.removeFromCart(item().product)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -59,7 +55,5 @@ export class ShowCartItem {
 
   store = inject(EcommerceStore);
 
-  total = computed(() =>
-    (this.item().product.price * this.item().quantity).toFixed(2)
-  );
+  total = computed(() => (this.item().product.price * this.item().quantity).toFixed(2));
 }
