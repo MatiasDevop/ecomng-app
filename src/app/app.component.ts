@@ -46,18 +46,18 @@ export class AppComponent implements OnInit {
     // this.handleMergeMap();
     this.handleConcatMap();
   }
-  testPipes() {
-    this.observable
-      ?.pipe(
-        map((x: { message: string; time: Date } | string) => (typeof x === 'object' ? x.message : x)),
-        filter((x: unknown): x is string => typeof x === 'string'),
-      )
-      .subscribe({
-        next: (v) => console.log('observer got a next value: ' + v),
-        error: (err) => console.error('observer got an error: ' + err),
-        complete: () => console.log('observer got a complete notification'),
-      });
-  }
+  // testPipes() {
+  //   this.observable
+  //     ?.pipe(
+  //       map((x: { message: string; time: Date } | string) => (typeof x === 'object' ? x.message : x)),
+  //       filter((x: unknown): x is string => typeof x === 'string'),
+  //     )
+  //     .subscribe({
+  //       next: (v) => console.log('observer got a next value: ' + v),
+  //       error: (err) => console.error('observer got an error: ' + err),
+  //       complete: () => console.log('observer got a complete notification'),
+  //     });
+  // }
   handleErrors() {
     this.observableWithError
       .pipe(
@@ -68,23 +68,23 @@ export class AppComponent implements OnInit {
       )
       .subscribe();
   }
-  handleSwitchMap() {
-    this.observableWithSwitchMap
-      .pipe(
-        switchMap((data: { message: string; time: Date }) => {
-          console.log('SwitchMap received: ', data);
-          return new Observable((observer) => {
-            observer.next('Data processed: ' + data.message);
-            observer.complete();
-          });
-        }),
-      )
-      .subscribe({
-        next: (v) => console.log('observer got a next value: ' + v),
-        error: (err) => console.error('observer got an error: ' + err),
-        complete: () => console.log('observer got a complete notification'),
-      });
-  }
+  // handleSwitchMap() {
+  //   this.observableWithSwitchMap
+  //     .pipe(
+  //       switchMap((data: { message: string; time: Date }) => {
+  //         console.log('SwitchMap received: ', data);
+  //         return new Observable((observer) => {
+  //           observer.next('Data processed: ' + data.message);
+  //           observer.complete();
+  //         });
+  //       }),
+  //     )
+  //     .subscribe({
+  //       next: (v) => console.log('observer got a next value: ' + v),
+  //       error: (err) => console.error('observer got an error: ' + err),
+  //       complete: () => console.log('observer got a complete notification'),
+  //     });
+  // }
   userIds$ = of([1, 2, 3]);
   handleMergeMap() {
     this.userIds$
