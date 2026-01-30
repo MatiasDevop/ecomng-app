@@ -58,7 +58,10 @@ import { MatInputModule } from '@angular/material/input';
       </form>
       <p class="text-sm text-gray-500 mt-2 text-center">
         Already have an account?
-        <a class="text-blue-600 cursor-pointer" (click)="openSignInDialog()"> Sign in </a>
+        <a class="text-blue-600 cursor-pointer" tabindex="0"
+          (click)="openSignInDialog()"
+          (keydown.enter)="openSignInDialog()"
+          (keydown.space)="$event.preventDefault(); openSignInDialog()"> Sign in </a>
       </p>
     </div>
   `,

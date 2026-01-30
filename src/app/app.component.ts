@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header';
 import { Toaster } from './services/toaster';
@@ -20,7 +20,7 @@ import {
   templateUrl: './app.component.html',
   styles: [],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = signal<string>('ng-ecommerce');
   service = inject(Toaster);
   observable = new Observable((observer) => {
@@ -49,8 +49,8 @@ export class AppComponent {
   testPipes() {
     this.observable
       ?.pipe(
-        map((x: any) => x.message),
-        filter((x: any) => typeof x == 'string'),
+        map((x: { message: string; time: Date } | string) => (typeof x === 'object' ? x.message : x)),
+        filter((x: unknown): x is string => typeof x === 'string'),
       )
       .subscribe({
         next: (v) => console.log('observer got a next value: ' + v),
@@ -71,7 +71,7 @@ export class AppComponent {
   handleSwitchMap() {
     this.observableWithSwitchMap
       .pipe(
-        switchMap((data: any) => {
+        switchMap((data: { message: string; time: Date }) => {
           console.log('SwitchMap received: ', data);
           return new Observable((observer) => {
             observer.next('Data processed: ' + data.message);

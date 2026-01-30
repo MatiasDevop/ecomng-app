@@ -16,11 +16,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 import { SignInParams, SignUpParams, User } from './models/user';
 import { Router } from '@angular/router';
-import { Order } from './models/order';
 import { withStorageSync } from '@angular-architects/ngrx-toolkit';
 import { AddReviewParams, UserReview } from './models/user-review';
 
-export type EcommerceState = {
+export interface EcommerceState {
   products: Product[];
   category: string;
   wishlistItems: Product[];
@@ -30,7 +29,7 @@ export type EcommerceState = {
   loading: boolean;
   selectedProductId: string | undefined;
   writeReview: boolean;
-};
+}
 
 export const EcommerceStore = signalStore(
   {
@@ -179,23 +178,13 @@ export const EcommerceStore = signalStore(
           return;
         }
 
-        const order: Order = {
-          id: crypto.randomUUID(),
-          userId: user.id,
-          total: Math.round(
-            store.cartItems().reduce((acc, item) => acc + item.product.price * item.quantity, 0),
-          ),
-          items: store.cartItems(),
-          paymentStatus: 'success',
-        };
-
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         patchState(store, { loading: false, cartItems: [] });
         router.navigate(['order-success']);
       },
 
-      signIn: ({ email, password, checkout, dialogId }: SignInParams) => {
+      signIn: ({ email, checkout, dialogId }: SignInParams) => {
         patchState(store, {
           user: {
             id: 'u1',
@@ -212,7 +201,7 @@ export const EcommerceStore = signalStore(
         }
       },
 
-      signUp: ({ email, password, name, checkout, dialogId }: SignUpParams) => {
+      signUp: ({ email, checkout, dialogId }: SignUpParams) => {
         patchState(store, {
           user: {
             id: 'u1',
@@ -251,7 +240,7 @@ export const EcommerceStore = signalStore(
           return;
         }
 
-        const review: UserReview = {
+        void ({
           id: crypto.randomUUID(),
           title,
           rating,
@@ -260,7 +249,7 @@ export const EcommerceStore = signalStore(
           userName: store.user()?.name || '',
           userImageUrl: store.user()?.imageUrl || '',
           reviewDate: new Date(),
-        };
+        } as UserReview);
       },
     }),
   ),

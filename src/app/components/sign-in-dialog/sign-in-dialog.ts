@@ -63,7 +63,10 @@ import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
 
       <p class="text-sm text-gray-500 mt-2 text-center">
         Don't have an account?
-        <a class="text-blue-600 cursor-pointer" (click)="openSignUpDialog()">Sign up</a>
+        <a class="text-blue-600 cursor-pointer" tabindex="0"
+          (click)="openSignUpDialog()"
+          (keydown.enter)="openSignUpDialog()"
+          (keydown.space)="$event.preventDefault(); openSignUpDialog()">Sign up</a>
       </p>
     </div>
   `,

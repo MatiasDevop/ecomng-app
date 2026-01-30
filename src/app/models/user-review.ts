@@ -1,4 +1,4 @@
-export type UserReview = {
+export interface UserReview {
   id: string;
   productId: string;
   userName: string;
@@ -7,6 +7,6 @@ export type UserReview = {
   title: string;
   comment: string;
   reviewDate: Date;
-};
+}
 
 export type AddReviewParams = Pick<UserReview, 'title' | 'comment' | 'rating'>;

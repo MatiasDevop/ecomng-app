@@ -1,6 +1,6 @@
 import { UserReview } from './user-review';
 
-export type Product = {
+export interface Product {
   id: string;
   name: string;
   description: string;
@@ -11,4 +11,4 @@ export type Product = {
   inStock: boolean;
   category: string;
   reviews: UserReview[];
-};
+}
