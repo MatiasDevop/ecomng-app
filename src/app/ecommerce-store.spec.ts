@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { EcommerceStore } from './ecommerce-store';
 import { Toaster } from './services/toaster';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Product } from './models/product';
 import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
@@ -316,8 +316,8 @@ describe('EcommerceStore', () => {
 
   describe('User Authentication', () => {
     it('should sign in user', () => {
-      const mockDialogRef = { close: jasmine.createSpy('close') };
-      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as any);
+      const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
+      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
       store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'dialog-1' });
 
@@ -328,8 +328,8 @@ describe('EcommerceStore', () => {
     });
 
     it('should navigate to checkout after sign in when checkout flag is true', () => {
-      const mockDialogRef = { close: jasmine.createSpy('close') };
-      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as any);
+      const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
+      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
       store.signIn({ email: 'test@example.com', password: 'password123', checkout: true, dialogId: 'dialog-1' });
 
@@ -337,8 +337,8 @@ describe('EcommerceStore', () => {
     });
 
     it('should sign up user', () => {
-      const mockDialogRef = { close: jasmine.createSpy('close') };
-      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as any);
+      const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
+      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
       store.signUp({ name: 'New User', email: 'newuser@example.com', password: 'password123', checkout: false, dialogId: 'dialog-1' });
 
@@ -348,8 +348,8 @@ describe('EcommerceStore', () => {
     });
 
     it('should navigate to checkout after sign up when checkout flag is true', () => {
-      const mockDialogRef = { close: jasmine.createSpy('close') };
-      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as any);
+      const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
+      matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
       store.signUp({ name: 'New User', email: 'newuser@example.com', password: 'password123', checkout: true, dialogId: 'dialog-1' });
 
