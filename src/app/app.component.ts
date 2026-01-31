@@ -5,13 +5,10 @@ import { Toaster } from './services/toaster';
 import {
   catchError,
   concatMap,
-  filter,
   from,
-  map,
   mergeMap,
   Observable,
   of,
-  switchMap,
 } from 'rxjs';
 
 @Component({
