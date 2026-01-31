@@ -2,14 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header';
 import { Toaster } from './services/toaster';
-import {
-  catchError,
-  concatMap,
-  from,
-  mergeMap,
-  Observable,
-  of,
-} from 'rxjs';
+import { catchError, concatMap, from, mergeMap, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
