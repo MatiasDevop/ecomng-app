@@ -10,7 +10,13 @@
     "lint": "ng lint",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "e2e": "ng e2e",
+    "e2e:pw": "playwright test",
+    "e2e:pw:ui": "playwright test --ui",
+    "e2e:pw:headed": "playwright test --headed --project=chromium",
+    "e2e:pw:debug": "set PWDEBUG=1 && playwright test --project=chromium",
+    "e2e:pw:report": "playwright show-report"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +45,7 @@
     "@angular/build": "^20.3.11",
     "@angular/cli": "^20.3.11",
     "@angular/compiler-cli": "^20.3.13",
+    "@playwright/test": "1.58.2",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "20.7.0",
     "eslint": "^9.39.1",
@@ -49,6 +56,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "playwright-ng-schematics": "^20.0.2",
     "postcss": "^8.5.3",
     "prettier": "^3.8.1",
     "typescript": "~5.9.3",
