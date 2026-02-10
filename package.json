@@ -14,8 +14,8 @@
     "e2e": "ng e2e",
     "e2e:pw": "playwright test",
     "e2e:pw:ui": "playwright test --ui",
-    "e2e:pw:headed": "playwright test --headed --project=chromium",
-    "e2e:pw:debug": "set PWDEBUG=1 && playwright test --project=chromium",
+    "e2e:pw:headed": "playwright test --headed --workers=1 --project=chromium",
+    "e2e:pw:debug": "set PWDEBUG=1 && playwright test --workers=1 --project=chromium",
     "e2e:pw:report": "playwright show-report"
   },
   "private": true,
