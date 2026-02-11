@@ -104,7 +104,7 @@ describe('EcommerceStore', () => {
 
       store.setCategory('electronics');
       const electronicsProducts = store.filteredProducts();
-      expect(electronicsProducts.every(p => p.category === 'electronics')).toBe(true);
+      expect(electronicsProducts.every((p) => p.category === 'electronics')).toBe(true);
     });
 
     it('should return all products when category is "All"', () => {
@@ -248,7 +248,7 @@ describe('EcommerceStore', () => {
       store.addAllWishlistToCart();
 
       expect(store.cartItems().length).toBe(2);
-      const existingItem = store.cartItems().find(item => item.product.id === mockProduct.id);
+      const existingItem = store.cartItems().find((item) => item.product.id === mockProduct.id);
       expect(existingItem?.quantity).toBe(2); // Should not change
     });
 
@@ -282,7 +282,12 @@ describe('EcommerceStore', () => {
     });
 
     it('should navigate to checkout when user is logged in', () => {
-      store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'test-dialog' });
+      store.signIn({
+        email: 'test@example.com',
+        password: 'password123',
+        checkout: false,
+        dialogId: 'test-dialog',
+      });
       store.proceedToCheckout();
 
       expect(matDialogSpy.open).not.toHaveBeenCalled();
@@ -300,7 +305,12 @@ describe('EcommerceStore', () => {
     });
 
     it('should place order successfully when user is logged in', async () => {
-      store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'test-dialog' });
+      store.signIn({
+        email: 'test@example.com',
+        password: 'password123',
+        checkout: false,
+        dialogId: 'test-dialog',
+      });
       store.addToCart(mockProduct, 2);
 
       const placeOrderPromise = store.placeOrder();
@@ -319,7 +329,12 @@ describe('EcommerceStore', () => {
       const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
       matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
-      store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'dialog-1' });
+      store.signIn({
+        email: 'test@example.com',
+        password: 'password123',
+        checkout: false,
+        dialogId: 'dialog-1',
+      });
 
       expect(store.user()).toBeDefined();
       expect(store.user()?.email).toBe('test@example.com');
@@ -331,7 +346,12 @@ describe('EcommerceStore', () => {
       const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
       matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
-      store.signIn({ email: 'test@example.com', password: 'password123', checkout: true, dialogId: 'dialog-1' });
+      store.signIn({
+        email: 'test@example.com',
+        password: 'password123',
+        checkout: true,
+        dialogId: 'dialog-1',
+      });
 
       expect(routerSpy.navigate).toHaveBeenCalledWith(['/checkout']);
     });
@@ -340,7 +360,13 @@ describe('EcommerceStore', () => {
       const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
       matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
-      store.signUp({ name: 'New User', email: 'newuser@example.com', password: 'password123', checkout: false, dialogId: 'dialog-1' });
+      store.signUp({
+        name: 'New User',
+        email: 'newuser@example.com',
+        password: 'password123',
+        checkout: false,
+        dialogId: 'dialog-1',
+      });
 
       expect(store.user()).toBeDefined();
       expect(store.user()?.email).toBe('newuser@example.com');
@@ -351,13 +377,24 @@ describe('EcommerceStore', () => {
       const mockDialogRef = { close: jasmine.createSpy('close') } as Partial<MatDialogRef<unknown>>;
       matDialogSpy.getDialogById.and.returnValue(mockDialogRef as MatDialogRef<unknown>);
 
-      store.signUp({ name: 'New User', email: 'newuser@example.com', password: 'password123', checkout: true, dialogId: 'dialog-1' });
+      store.signUp({
+        name: 'New User',
+        email: 'newuser@example.com',
+        password: 'password123',
+        checkout: true,
+        dialogId: 'dialog-1',
+      });
 
       expect(routerSpy.navigate).toHaveBeenCalledWith(['/checkout']);
     });
 
     it('should sign out user', () => {
-      store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'dialog-1' });
+      store.signIn({
+        email: 'test@example.com',
+        password: 'password123',
+        checkout: false,
+        dialogId: 'dialog-1',
+      });
       store.signOut();
 
       expect(store.user()).toBeUndefined();
@@ -380,7 +417,12 @@ describe('EcommerceStore', () => {
     it('should set loading state when adding review', () => {
       const product = store.products()[0];
       store.setProductId(product.id);
-      store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'dialog-1' });
+      store.signIn({
+        email: 'test@example.com',
+        password: 'password123',
+        checkout: false,
+        dialogId: 'dialog-1',
+      });
 
       store.addReview({
         title: 'Great product',
@@ -394,7 +436,12 @@ describe('EcommerceStore', () => {
     });
 
     it('should not add review when product is not selected', async () => {
-      store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'dialog-1' });
+      store.signIn({
+        email: 'test@example.com',
+        password: 'password123',
+        checkout: false,
+        dialogId: 'dialog-1',
+      });
 
       await store.addReview({
         title: 'Great product',
@@ -456,7 +503,12 @@ describe('EcommerceStore', () => {
     it('should handle dialog not found when signing in', () => {
       matDialogSpy.getDialogById.and.returnValue(undefined);
       expect(() => {
-        store.signIn({ email: 'test@example.com', password: 'password123', checkout: false, dialogId: 'non-existent' });
+        store.signIn({
+          email: 'test@example.com',
+          password: 'password123',
+          checkout: false,
+          dialogId: 'non-existent',
+        });
       }).not.toThrow();
     });
   });

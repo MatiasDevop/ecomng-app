@@ -9,7 +9,10 @@ test.describe('Authentication', () => {
   test('sign in dialog opens and signs in', async ({ page }) => {
     await page.getByRole('button', { name: 'Sign in' }).click();
     await expect(page.getByRole('heading', { name: 'Sign In' })).toBeVisible();
-    await page.locator('app-sign-in-dialog').getByText('Sign in to your account to continue').click();
+    await page
+      .locator('app-sign-in-dialog')
+      .getByText('Sign in to your account to continue')
+      .click();
     await page.getByPlaceholder('Enter your email').fill('playwright@test.com');
     await page.getByPlaceholder('Enter your password').fill('pw123456');
     await page.getByRole('button', { name: 'Sign In' }).click();

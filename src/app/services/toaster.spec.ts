@@ -10,10 +10,7 @@ describe('Toaster Service', () => {
     hotToastSpy = jasmine.createSpyObj('HotToastService', ['success', 'error']);
 
     TestBed.configureTestingModule({
-      providers: [
-        Toaster,
-        { provide: HotToastService, useValue: hotToastSpy },
-      ],
+      providers: [Toaster, { provide: HotToastService, useValue: hotToastSpy }],
     });
 
     service = TestBed.inject(Toaster);
@@ -35,15 +32,9 @@ describe('Toaster Service', () => {
 
     service.testingObserve();
 
-    expect(logSpy).toHaveBeenCalledWith(
-      'observer got a next value: Hello World!'
-    );
-    expect(logSpy).toHaveBeenCalledWith(
-      'observer got a next value: Hello Again!'
-    );
-    expect(logSpy).toHaveBeenCalledWith(
-      'observer got a complete notification'
-    );
+    expect(logSpy).toHaveBeenCalledWith('observer got a next value: Hello World!');
+    expect(logSpy).toHaveBeenCalledWith('observer got a next value: Hello Again!');
+    expect(logSpy).toHaveBeenCalledWith('observer got a complete notification');
     expect(errorSpy).not.toHaveBeenCalled();
   });
 });

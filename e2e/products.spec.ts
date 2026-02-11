@@ -18,7 +18,10 @@ test.describe('Products', () => {
   test('product detail shows info and allows add to cart', async ({ page }) => {
     // Click first product image to navigate to detail
     await page.locator('app-product-card img[alt="product image"]').first().click();
-    const addBtn = page.locator('app-product-info').getByRole('button', { name: /Add to Cart/i }).first();
+    const addBtn = page
+      .locator('app-product-info')
+      .getByRole('button', { name: /Add to Cart/i })
+      .first();
     await expect(addBtn).toBeVisible();
     await addBtn.click();
     // Navigate to cart and assert item exists

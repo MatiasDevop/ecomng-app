@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { goHome, addFirstGridProductToCart, openCart, proceedToCheckout, signInFromDialog } from './utils';
+import {
+  goHome,
+  addFirstGridProductToCart,
+  openCart,
+  proceedToCheckout,
+  signInFromDialog,
+} from './utils';
 
 test.describe('Checkout', () => {
   test.beforeEach(async ({ page }) => {
@@ -11,7 +17,12 @@ test.describe('Checkout', () => {
   test('place order flow', async ({ page }) => {
     await proceedToCheckout(page);
     // If auth required, sign in via dialog
-    if (await page.getByRole('heading', { name: 'Sign In' }).isVisible().catch(() => false)) {
+    if (
+      await page
+        .getByRole('heading', { name: 'Sign In' })
+        .isVisible()
+        .catch(() => false)
+    ) {
       await signInFromDialog(page);
     }
 

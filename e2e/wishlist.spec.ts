@@ -11,9 +11,13 @@ test.describe('Wishlist', () => {
 
     await openWishlist(page);
     // If any items exist, page shows wishlist grid and count
-      // Wait for either wishlist items or empty state to appear
-      await page.waitForSelector('app-product-card, app-empty-wishlist');
-    const hasItems = await page.locator('app-product-card').first().isVisible().catch(() => false);
+    // Wait for either wishlist items or empty state to appear
+    await page.waitForSelector('app-product-card, app-empty-wishlist');
+    const hasItems = await page
+      .locator('app-product-card')
+      .first()
+      .isVisible()
+      .catch(() => false);
     if (hasItems) {
       // Clear wishlist
       await page.getByRole('button', { name: 'Clear Wishlist' }).click();

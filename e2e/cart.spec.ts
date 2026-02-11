@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { goHome, addFirstGridProductToCart, openCart, proceedToCheckout, signInFromDialog } from './utils';
+import {
+  goHome,
+  addFirstGridProductToCart,
+  openCart,
+  proceedToCheckout,
+  signInFromDialog,
+} from './utils';
 
 test.describe('Cart', () => {
   test.beforeEach(async ({ page }) => {
@@ -19,7 +25,9 @@ test.describe('Cart', () => {
     await expect(page.locator('app-show-cart-item')).toHaveCount(1);
 
     // Move to wishlist (click button with favorite_border icon)
-    const moveBtn = item.locator('button', { has: page.locator('mat-icon', { hasText: 'favorite_border' }) });
+    const moveBtn = item.locator('button', {
+      has: page.locator('mat-icon', { hasText: 'favorite_border' }),
+    });
     await moveBtn.click();
     await expect(page.locator('app-show-cart-item')).toHaveCount(0);
 

@@ -35,6 +35,53 @@ Start with [docs/01-overview.md](docs/01-overview.md) for the big picture.
 - Build: `npm run build`
 - Test: `npm test`
 
+## Testing
+
+### Unit Tests
+
+```bash
+npm test
+```
+
+### E2E Tests (Playwright)
+
+**Start dev server first** (in one terminal):
+
+```bash
+npm run start
+```
+
+**Then run E2E tests** (in another terminal):
+
+- Run all tests across all browsers:
+
+  ```bash
+  npm run e2e:pw
+  ```
+
+- Run tests visually in one browser:
+
+  ```bash
+  npm run e2e:pw:headed
+  ```
+
+- Interactive UI mode (pick tests, see screenshots):
+
+  ```bash
+  npm run e2e:pw:ui
+  ```
+
+- Debug mode with Playwright Inspector:
+
+  ```bash
+  npm run e2e:pw:debug
+  ```
+
+- View test report:
+  ```bash
+  npm run e2e:pw:report
+  ```
+
 ## Notes
 
 - This app uses standalone components; there are no NgModules.
